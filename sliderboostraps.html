@@ -31,10 +31,11 @@
 
       var lazySliderSource = function(numImg=1) {
         var imgs= $(".carousel.lazy picture > source[data-srcset]").parent();
-        for (var i = 0; i < numImg; i++) {
-          console.log(i);
-          console.log(numImg);
-          var source=$(imgs[i]).children("source");
+        if(numImg > imgs.length){
+          numImg=imgs.length;
+        }
+        for (var z = 0; z < numImg; z++) {
+          var source=$(imgs[z]).children("source");
           for (var i = 0; i < source.length; i++) {
             var dataSrcset=$(source[i]).attr("data-srcset");
             $(source[i]).attr("srcset",dataSrcset);
@@ -53,6 +54,9 @@
         //Siempre carga la siguiente imagen que tenga que servir
         var lazySlider = function(numImg=0) {
           var imgs= $('img.lazy-load');
+          if(numImg > imgs.length){
+            numImg=imgs.length;
+          }
           for (var i = 0; i < numImg; i++) {
             var src= $(imgs[i]).attr("data-src");
             //console.log(src);
