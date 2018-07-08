@@ -48,25 +48,14 @@
         }
         //Llamada a la funcion de arriba para que la primera vez que cargue el slider carge la siguiente imagen
         //El parametro es el numero de imagenes que se quiere precargar sin contar en la que esta ahora mismo
-        lazySlider(0);
+        lazySlider(1);
         //Evento para cuando empieze la transicion se carge la siguiente imagen que tenga que mostrar
         //El evento se activa cuando empieze, tambien se puede poner cuando acabe
         $('.carousel.lazy').on('slide.bs.carousel', function () {
           //Precarga de 1 siempre que haya un evento de mover una imagen
           lazySlider(1);
         });
-        //Funcion que habilita el lazy load automaticamente cuando salta el evento de transicion del slider
-        //Solo carga la primera imagen
-        $(function() {
-          return $(".carousel.lazy").on("slide.bs.carousel", function(ev) {
-            var lazy;
-            lazy = $(ev.relatedTarget).find("img[data-src]");
-            lazy.attr("src", lazy.data('src'));
-            lazy.removeAttr("data-src");
-          });
-        });
       }else{
-
         /*
         Funciones para el lazy load cuando tiene picture y source
         */
