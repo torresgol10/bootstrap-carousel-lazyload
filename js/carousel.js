@@ -54,9 +54,55 @@ $(document).ready(function(){
         }
       }
     }
+    var lazySliderSource = function(numImg) {
+      var imgs = $(".carousel.lazy picture > source[data-srcset]").parent();
+      var dataSrcset;
+      var source;
+      if(imgs.length > 0){
+        if(numImg > imgs.length){
+          numImg=imgs.length;
+        }
+        for (var z = 0; z < numImg; z++) {
+          source=$(imgs[z]).children("source");
+          for (var i = 0; i < source.length; i++) {
+            dataSrcset=$(source[i]).attr("data-srcset");
+            $(source[i]).attr("srcset",dataSrcset);
+            $(source[i]).removeAttr("data-srcset");
+          }
+        }
+      }
+    }
+    var lazySliderLast  = function(numImg) {
+      var imgs = $(".carousel.lazy picture > source[data-srcset]").parent();
+      var dataSrcset;
+      var source;
+      if(imgs.length > 0){
+        if(numImg > imgs.length){
+          numImg=imgs.length;
+        }
+        var lastImg=imgs.length-1;
+        console.log("Ya llegado al for");
+        for (var y = lastImg; y < imgs.length; y++) {
+          console.log(y);
+          console.log("YA entrado al for");
+          source=$(imgs[y]).children("source");
+          for (var i = 0; i < source.length; i++) {
+            dataSrcset=$(source[i]).attr("data-srcset");
+            $(source[i]).attr("srcset",dataSrcset);
+            $(source[i]).removeAttr("data-srcset");
+          }
+        }
+        console.log("HA terminado el for");
+      }
+    }
     lazySliderSource(1);
-    $('.carousel.lazy').on('slide.bs.carousel', function () {
-      lazySliderSource(1);
+    $('.carousel.lazy').on('slide.bs.carousel', function (ev) {
+      //Llamada para que carge la foto hacia la que va
+      if(ev.direction=="right"){
+        lazySliderLast(1);
+      }else{
+        lazySliderSource(1);
+      }
     });
   }
 
