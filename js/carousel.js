@@ -81,10 +81,7 @@ $(document).ready(function(){
           numImg=imgs.length;
         }
         var lastImg=imgs.length-1;
-        console.log("Ya llegado al for");
         for (var y = lastImg; y < imgs.length; y++) {
-          console.log(y);
-          console.log("YA entrado al for");
           source=$(imgs[y]).children("source");
           for (var i = 0; i < source.length; i++) {
             dataSrcset=$(source[i]).attr("data-srcset");
@@ -92,7 +89,6 @@ $(document).ready(function(){
             $(source[i]).removeAttr("data-srcset");
           }
         }
-        console.log("HA terminado el for");
       }
     }
     lazySliderSource(1);
