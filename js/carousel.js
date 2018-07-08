@@ -23,14 +23,33 @@ $(document).ready(function(){
         }
       }
     }
+    var lazySliderLast = function() {
+      var src;
+      var imgs = $('img.lazy-load');
+      if(imgs.length > 0){
+        var lastImg=imgs.length-1;
+
+        for (var i = lastImg; i < imgs.length; i++) {
+          src = $(imgs[i]).attr("data-src");
+          $(imgs[i]).attr("src",src);
+          $(imgs[i]).removeAttr("data-src");
+          $(imgs[i]).removeClass("lazy-load");
+        }
+      }
+    }
     //Llamada a la funcion de arriba para que la primera vez que cargue el slider carge la siguiente imagen
     //El parametro es el numero de imagenes que se quiere precargar sin contar en la que esta ahora mismo
     lazySlider(1);
     //Evento para cuando empieze la transicion se carge la siguiente imagen que tenga que mostrar
     //El evento se activa cuando empieze, tambien se puede poner cuando acabe
-    $('.carousel.lazy').on('slide.bs.carousel', function () {
+    $('.carousel.lazy').on('slide.bs.carousel', function (ev) {
       //Precarga de 1 siempre que haya un evento de mover una imagen
       lazySlider(1);
+      if(ev.direction=="right"){
+        lazySliderLast(1);
+      }else{
+        lazySlider(1);
+      }
     });
   }else{
     /*
@@ -54,32 +73,12 @@ $(document).ready(function(){
         }
       }
     }
-    var lazySliderSource = function(numImg) {
+
+    var lazySliderSourceLast  = function() {
       var imgs = $(".carousel.lazy picture > source[data-srcset]").parent();
       var dataSrcset;
       var source;
       if(imgs.length > 0){
-        if(numImg > imgs.length){
-          numImg=imgs.length;
-        }
-        for (var z = 0; z < numImg; z++) {
-          source=$(imgs[z]).children("source");
-          for (var i = 0; i < source.length; i++) {
-            dataSrcset=$(source[i]).attr("data-srcset");
-            $(source[i]).attr("srcset",dataSrcset);
-            $(source[i]).removeAttr("data-srcset");
-          }
-        }
-      }
-    }
-    var lazySliderLast  = function(numImg) {
-      var imgs = $(".carousel.lazy picture > source[data-srcset]").parent();
-      var dataSrcset;
-      var source;
-      if(imgs.length > 0){
-        if(numImg > imgs.length){
-          numImg=imgs.length;
-        }
         var lastImg=imgs.length-1;
         for (var y = lastImg; y < imgs.length; y++) {
           source=$(imgs[y]).children("source");
@@ -95,7 +94,7 @@ $(document).ready(function(){
     $('.carousel.lazy').on('slide.bs.carousel', function (ev) {
       //Llamada para que carge la foto hacia la que va
       if(ev.direction=="right"){
-        lazySliderLast(1);
+        lazySliderSourceLast();
       }else{
         lazySliderSource(1);
       }
