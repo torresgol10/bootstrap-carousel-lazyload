@@ -3,62 +3,87 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--script src="./js/carousel.js"></script-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title></title>
+    <style media="screen">
+    .carousel{
+      width: 100%;
+      height: 100vh;
+    }
+    .carousel-inner{
+      height: 100%;
+    }
+    .carousel-item{
+      height: 100%;
+    }
+    </style>
     <script type="text/javascript">
-    //Activacion del slider
-    $('.carousel').carousel();
-
     $(document).ready(function(){
-      //Funcion complementaria a la funcion de abajo para que no solo carge a la primera
-      //Siempre carga la siguiente imagen que tenga que servir
-      var lazySlider = function(numImg=0) {
-        var imgs= $('img.lazy-load');
+      //Activacion del slider
+      $('.carousel').carousel();
+
+      //console.log($(".carousel.lazy picture:not(.carousel.lazy picture source[data-srcset])"));
+      //console.log($(".carousel.lazy picture > source[data-srcset]").parent());
+      //console.log($("img"));
+
+      var lazySliderSource = function(numImg=1) {
+        var imgs= $(".carousel.lazy picture > source[data-srcset]").parent();
         for (var i = 0; i < numImg; i++) {
-          var src= $(imgs[i]).attr("data-srcset");
-          console.log(src);
-          $(imgs[i]).attr("src",src);
-          $(imgs[i]).removeAttr("data-srcset");
-          $(imgs[i]).removeClass("lazy-load");
+          console.log(i);
+          console.log(numImg);
+          var source=$(imgs[i]).children("source");
+          for (var i = 0; i < source.length; i++) {
+            var dataSrcset=$(source[i]).attr("data-srcset");
+            $(source[i]).attr("srcset",dataSrcset);
+            $(source[i]).removeAttr("data-srcset");
+          }
         }
       }
-      //Llamada a la funcion de arriba para que la primera vez que cargue el slider carge la siguiente imagen
-      //El parametro es el numero de imagenes que se quiere precargar sin contar en la que esta ahora mismo
-      lazySlider(1);
-      //Evento para cuando empieze la transicion se carge la siguiente imagen que tenga que mostrar
-      //El evento se activa cuando empieze, tambien se puede poner cuando acabe
+      lazySliderSource(2);
       $('.carousel.lazy').on('slide.bs.carousel', function () {
-        //Precarga de 1 siempre que haya un evento de mover una imagen
-        lazySlider(1);
-      })
-    });
-    //Funcion que habilita el lazy load automaticamente cuando salta el evento de transicion del slider
-    //Solo carga la primera imagen
-    $(function() {
-      return $(".carousel.lazy").on("slide.bs.carousel", function(ev) {
-        var lazy;
-        lazy = $(ev.relatedTarget).find("img[data-srcset]");
-        lazy.attr("src", lazy.data('srcset'));
-        lazy.removeAttr("data-srcset");
+        lazySliderSource();
       });
+
+        if($(".carousel.lazy picture source")==0){
+          console.log("Ha entrado");
+        //Funcion complementaria a la funcion de abajo para que no solo carge a la primera
+        //Siempre carga la siguiente imagen que tenga que servir
+        var lazySlider = function(numImg=0) {
+          var imgs= $('img.lazy-load');
+          for (var i = 0; i < numImg; i++) {
+            var src= $(imgs[i]).attr("data-src");
+            //console.log(src);
+            $(imgs[i]).attr("src",src);
+            $(imgs[i]).removeAttr("data-src");
+            $(imgs[i]).removeClass("lazy-load");
+          }
+        }
+        //Llamada a la funcion de arriba para que la primera vez que cargue el slider carge la siguiente imagen
+        //El parametro es el numero de imagenes que se quiere precargar sin contar en la que esta ahora mismo
+        lazySlider(1);
+        //Evento para cuando empieze la transicion se carge la siguiente imagen que tenga que mostrar
+        //El evento se activa cuando empieze, tambien se puede poner cuando acabe
+        $('.carousel.lazy').on('slide.bs.carousel', function () {
+          //Precarga de 1 siempre que haya un evento de mover una imagen
+          lazySlider(1);
+        })
+        //Funcion que habilita el lazy load automaticamente cuando salta el evento de transicion del slider
+        //Solo carga la primera imagen
+        $(function() {
+          return $(".carousel.lazy").on("slide.bs.carousel", function(ev) {
+            var lazy;
+            lazy = $(ev.relatedTarget).find("img[data-src]");
+            lazy.attr("src", lazy.data('src'));
+            lazy.removeAttr("data-src");
+          });
+        });
+      }
     });
     </script>
-    <style media="screen">
-      .carousel{
-        width: 100%;
-        height: 100vh;
-      }
-      .carousel-inner{
-        height: 100%;
-      }
-      .carousel-item{
-        height: 100%;
-      }
-    </style>
+    <title></title>
   </head>
   <body>
     <div id="carouselExampleIndicators" class="carousel slide lazy" data-ride="carousel">
@@ -76,8 +101,8 @@
           </div>
           <div class="carousel-item">
             <picture>
-                <source  srcset="https://demo.cloudimg.io/width/1920/q80.webp/https://gallery.airstore.io/birds.jpg" type="image/webp">
-                <source srcset="https://demo.cloudimg.io/width/1920/q80/https://gallery.airstore.io/birds.jpg" type="image/jpeg">
+                <source  data-srcset="https://demo.cloudimg.io/width/1920/q80.webp/https://gallery.airstore.io/birds.jpg" type="image/webp">
+                <source data-srcset="https://demo.cloudimg.io/width/1920/q80/https://gallery.airstore.io/birds.jpg" type="image/jpeg">
                 <img class="d-block w-100 lazy-load" data-src="https://demo.cloudimg.io/width/1920/q80/https://gallery.airstore.io/birds.jpg" alt="...">
               </picture>
             <div class="carousel-caption d-none d-md-block">
@@ -88,8 +113,8 @@
 
             <div class="carousel-item">
               <picture>
-                  <source  srcset="https://demo.cloudimg.io/width/1920/q80.webp/https://cdn.pixabay.com/photo/2015/07/09/22/44/tree-838666_960_720.jpg" type="image/webp">
-                  <source srcset="https://demo.cloudimg.io/width/1920/q80/https://cdn.pixabay.com/photo/2015/07/09/22/44/tree-838666_960_720.jpg" type="image/jpeg">
+                  <source  data-srcset="https://demo.cloudimg.io/width/1920/q80.webp/https://cdn.pixabay.com/photo/2015/07/09/22/44/tree-838666_960_720.jpg" type="image/webp">
+                  <source data-srcset="https://demo.cloudimg.io/width/1920/q80/https://cdn.pixabay.com/photo/2015/07/09/22/44/tree-838666_960_720.jpg" type="image/jpeg">
                   <img class="d-block w-100 lazy-load" data-src="https://demo.cloudimg.io/width/1920/q80/https://cdn.pixabay.com/photo/2015/07/09/22/44/tree-838666_960_720.jpg" alt="...">
                 </picture>
               <div class="carousel-caption d-none d-md-block">
@@ -100,8 +125,8 @@
 
               <div class="carousel-item">
                 <picture>
-                    <source  srcset="https://demo.cloudimg.io/width/1920/q80.webp/https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" type="image/webp">
-                    <source srcset="https://demo.cloudimg.io/width/1920/q80/https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" type="image/jpeg">
+                    <source  data-srcset="https://demo.cloudimg.io/width/1920/q80.webp/https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" type="image/webp">
+                    <source data-srcset="https://demo.cloudimg.io/width/1920/q80/https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" type="image/jpeg">
                     <img class="d-block w-100 lazy-load" data-src="https://demo.cloudimg.io/width/1920/q80/https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="...">
                   </picture>
                 <div class="carousel-caption d-none d-md-block">
