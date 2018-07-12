@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/carousel.css">
+    <script src="js/jquery-lazyload.js"></script>
+    <script src="js/carousel.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <div id="carouselExampleIndicators" class="carousel slide lazy carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <picture>
+                <source  srcset="https://demo.cloudimg.io/width/1920/q80.webp/https://gallery.airstore.io/paris.jpg" type="image/webp">
+                <source srcset="https://demo.cloudimg.io/width/1920/q80/https://gallery.airstore.io/paris.jpg" type="image/jpeg">
+                <img class="d-block w-100" src="https://demo.cloudimg.io/width/1920/q80/https://gallery.airstore.io/paris.jpg" alt="...">
+              </picture>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>SLIDER 1</h5>
+              <p>...</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <picture>
+                <source  data-srcset="https://demo.cloudimg.io/width/1920/q80.webp/https://gallery.airstore.io/birds.jpg" type="image/webp">
+                <source data-srcset="https://demo.cloudimg.io/width/1920/q80/https://gallery.airstore.io/birds.jpg" type="image/jpeg">
+                <img class="d-block w-100 lazy-load" data-src="https://demo.cloudimg.io/width/1920/q80/https://gallery.airstore.io/birds.jpg" alt="...">
+              </picture>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>SLIDER 2</h5>
+              <p>...</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <picture>
+                <source  data-srcset="https://demo.cloudimg.io/width/1920/q80.webp/https://cdn.pixabay.com/photo/2015/07/09/22/44/tree-838666_960_720.jpg" type="image/webp">
+                <source data-srcset="https://demo.cloudimg.io/width/1920/q80/https://cdn.pixabay.com/photo/2015/07/09/22/44/tree-838666_960_720.jpg" type="image/jpeg">
+                <img class="d-block w-100 lazy-load" data-src="https://demo.cloudimg.io/width/1920/q80/https://cdn.pixabay.com/photo/2015/07/09/22/44/tree-838666_960_720.jpg" alt="...">
+              </picture>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>SLIDER 3</h5>
+              <p>...</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <picture>
+                <source  data-srcset="https://demo.cloudimg.io/width/1920/q80.webp/https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" type="image/webp">
+                <source data-srcset="https://demo.cloudimg.io/width/1920/q80/https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" type="image/jpeg">
+                <img class="d-block w-100 lazy-load" data-src="https://demo.cloudimg.io/width/1920/q80/https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="...">
+              </picture>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>SLIDER 4</h5>
+              <p>...</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+  </body>
+</html>
