@@ -11,7 +11,7 @@ carouselLazyLoad();
 
 Optiones para pasar por parametros:
 
-Solo acepta un parametro que es el numero de imagen que se quiere precargar, si no se le pasa ningun parametro por defecto se precarga una, en este caso seria la siguiente y la anterior, en el caso que se quiere precargar mas imagenes solo tendriamos que pasarselo por parametro. 
+Solo acepta un parametro que es el numero de imagen que se quiere precargar, si no se le pasa ningun parametro por defecto se precarga una, en este caso seria la siguiente y la anterior, en el caso que se quiere precargar más imagenes solo tendriamos que pasarselo por parametro. 
 
 Ejemplo:
 
