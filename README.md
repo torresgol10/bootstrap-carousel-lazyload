@@ -1,7 +1,7 @@
 # carousel-bootstrap-lazyload
 Carousel de Bootstrap 4, compatible con lazy load, ademas soporta imágenes en formato .webp y totalmente compatible con srcset para imágenes responsive
 
-Para utilizar el plugins solo se necesita descargar el archivo jquery-lazyload.js dentro de la carpeta js.
+Para utilizar el plugins solo se necesita descargar el archivo jquery-lazyload.js dentro de la carpeta js o si prefieres el archivo jquery-lazyload.min.js que esta en el raiz tambien esta minificado.
 
 Y escribir dentro de tu documen.ready la llamada a la funcion. 
 
