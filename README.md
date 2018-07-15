@@ -16,3 +16,17 @@ Solo acepta un parametro que es el numero de imagen que se quiere precargar, si 
 Ejemplo:
 
 carouselLazyLoad(2);
+
+DEMOS:
+
+Slider con .jpg:
+
+https://torresgol10.github.io/bootstrap-carousel-lazyload/demo/sliderbootstrapjpg.html
+
+Slider con la etiqueta <picture>:
+ 
+https://torresgol10.github.io/bootstrap-carousel-lazyload/demo/sliderbootstraps.html
+
+MultiSlider en la misma pagina:
+
+https://torresgol10.github.io/bootstrap-carousel-lazyload/demo/multiplesSliderbootstraps.html
