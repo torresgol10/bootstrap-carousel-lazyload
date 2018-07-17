@@ -1,7 +1,10 @@
-function carouselLazyLoad(numImg) {
+function carouselLazyLoad(numImg,numbersImg) {
   // Get IE 10 and 11
   if(numImg == null){
     numImg = 1;
+  }
+  if(numbersImg == null){
+    numbersImg = false;
   }
   var id;
   var version = detectIE();
@@ -17,6 +20,9 @@ function carouselLazyLoad(numImg) {
       }
       lazySlider(numImg,id);
       lazySliderLast(id);
+      if(numbersImg){
+        numberImgSlider(0,id);
+      }
     }
       //Evento para cuando empieze la transicion se carge la siguiente imagen que tenga que mostrar
       //El evento se activa cuando empieze, tambien se puede poner cuando acabe
@@ -29,6 +35,10 @@ function carouselLazyLoad(numImg) {
       }else{
         lazySlider(1,id);
       }
+      if(numbersImg){
+        var to=ev.to;
+        numberImgSlider(to,id);
+      }
     });
   }else{
     for (var i = 0; i < multiSlider.length; i++) {
@@ -39,6 +49,9 @@ function carouselLazyLoad(numImg) {
       }
       lazySliderSource(numImg,id);
       lazySliderSourceLast(id);
+      if(numbersImg){
+        numberImgSlider(0,id);
+      }
     }
     $('.carousel.lazy').on('slide.bs.carousel', function (ev) {
       //Llamada para que carge la foto hacia la que va
@@ -48,7 +61,20 @@ function carouselLazyLoad(numImg) {
       }else{
         lazySliderSource(1,id);
       }
+      if(numbersImg){
+        var to=ev.to;
+        numberImgSlider(to,id);
+      }
     });
+  }
+}
+
+var numberImgSlider = function(to,id){
+  var toSlider = to + 1;
+  var lengthSlider = $(id + ".carousel img").length;
+  if($(id + ".carousel .numberSlider").length > 0){
+    $(id + ".carousel .numberSlider > .sliderTo").text(toSlider);
+    $(id + ".carousel .numberSlider > .sliderLength").text(lengthSlider);
   }
 }
 

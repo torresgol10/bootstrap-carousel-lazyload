@@ -8,3 +8,9 @@
 .carousel-item{
   height: 100%;
 }
+.numberSlider{
+  position: absolute;
+  color: #fff;
+  bottom: 5px;
+  right: 50%;
+}
