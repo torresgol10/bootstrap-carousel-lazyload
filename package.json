@@ -1,0 +1,24 @@
+{
+  "name": "carousel-lazyload",
+  "version": "1.0.0",
+  "description": "Lazy load para el carousel de bootstrap",
+  "main": "jquery-lazyload.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/torresgol10/carousel-bootstrap-lazyload.git"
+  },
+  "keywords": [
+    "bootstrap",
+    "lazyload",
+    "carousel"
+  ],
+  "author": "Torresgol10 <torresgol10.itd@gmail.com> (https://torresgol10.github.io/bootstrap-carousel-lazyload/demo/sliderbootstraps.html)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/torresgol10/carousel-bootstrap-lazyload/issues"
+  },
+  "homepage": "https://github.com/torresgol10/carousel-bootstrap-lazyload#readme"
+}
